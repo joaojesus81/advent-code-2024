@@ -34,6 +34,13 @@ def main() -> int:
         result = pass_sorting(int_record) and pass_distance(int_record)
         if result is True:
             safe += 1
+        else:
+            for idx in range(len(int_record)):
+                a = int_record[:idx] + int_record[idx + 1 :]
+                test = pass_sorting(a) and pass_distance(a)
+                if test is True:
+                    safe += 1
+                    break
     return safe
 
 

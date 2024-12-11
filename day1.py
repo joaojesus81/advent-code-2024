@@ -1,14 +1,19 @@
 total_distance = 0
+similarity_score = 0
 left_column = []
 right_column = []
 
 # read from input
-with open('./day1/input', 'r') as file:
+with open("./day1/input", "r") as file:
     for line in file:
         line_members = line.rstrip().split("   ")
         for idx, value in enumerate(line_members):
             int_value = int(value)
-            left_column.append(int_value) if idx == 0 else right_column.append(int_value)
+            (
+                left_column.append(int_value)
+                if idx == 0
+                else right_column.append(int_value)
+            )
 
 # sort files
 left_column.sort()
@@ -18,5 +23,8 @@ right_column.sort()
 for left, right in zip(left_column, right_column):
     total_distance += abs(left - right)
 
+for left in left_column:
+    similarity_score += right_column.count(left) * left
+
 # total distance
-print(total_distance)
+print(similarity_score)
